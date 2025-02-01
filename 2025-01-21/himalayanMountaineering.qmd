@@ -1,0 +1,27 @@
+---
+title: "Himalayan Mountaineering"
+format: html
+editor: visual
+---
+
+## Data
+
+```{r}
+library(tidyverse)
+
+exped_tidy <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-01-21/exped_tidy.csv')
+peaks_tidy <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-01-21/peaks_tidy.csv')
+```
+
+```{r}
+peaks_tidy %>% 
+  ggplot(aes(x = HEIGHTM, color = PHOST_FACTOR)) +
+  geom_density() 
+```
+
+```{r}
+exped_tidy %>% 
+  ggplot(aes(x = SUCCESS1, fill = O2USED)) +
+  geom_bar(position = 'fill')
+```
+
