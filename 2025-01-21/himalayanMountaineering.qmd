@@ -14,14 +14,19 @@ peaks_tidy <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience
 ```
 
 ```{r}
-peaks_tidy %>% 
-  ggplot(aes(x = HEIGHTM, color = PHOST_FACTOR)) +
-  geom_density() 
+mountain_range_heights <- peaks_tidy %>% 
+  ggplot(aes(x = HIMAL_FACTOR, y = HEIGHTM)) + 
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) + # from stackoverflow
+  labs(x = "Mountain Range Name", y = "Height (in meters)")
+
+mountain_range_heights
 ```
 
 ```{r}
-exped_tidy %>% 
-  ggplot(aes(x = SUCCESS1, fill = O2USED)) +
-  geom_bar(position = 'fill')
+ggsave(mountain_range_heights, 
+       filename = "mountain_range_heights.png",
+       device = "png",
+       height = 6, width = 5, units = "in")
 ```
 
