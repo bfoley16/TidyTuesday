@@ -29,4 +29,3 @@ ggsave(mountain_range_heights,
        device = "png",
        height = 6, width = 5, units = "in")
 ```
-
