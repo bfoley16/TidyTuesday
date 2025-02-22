@@ -18,7 +18,7 @@ mountain_range_heights <- peaks_tidy %>%
   ggplot(aes(x = HIMAL_FACTOR, y = HEIGHTM)) + 
   geom_boxplot() +
   theme(axis.text.x = element_text(angle = 30, hjust = 1)) + # from stackoverflow
-  labs(x = "Mountain Range Name", y = "Height (in meters)")
+  labs(x = "Mountain Range Name", y = "Height (in meters)", title = "Mountain Range Name vs. Heights of Mountains", subtitle = "Showing the distribution of heights for each mountain range")
 
 mountain_range_heights
 ```
