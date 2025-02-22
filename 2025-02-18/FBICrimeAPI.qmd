@@ -5,3 +5,36 @@ format: html
 editor: visual
 ---
 
+```{r}
+library(tidycensus)
+```
+
+```{r}
+agencies <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-02-18/agencies.csv')
+```
+
+```{r}
+state_pops <- get_estimates(geography = c("state"), product = "population", variables = "all") %>% 
+  filter(variable == "POPESTIMATE")
+```
+
+```{r}
+agencies_per_state <- agencies %>% 
+  group_by(state) %>% 
+  summarize(count_of_agencies = n()) %>% 
+  left_join(state_pops, by = join_by(state == NAME)) %>% 
+  mutate(pop_per_agency = value / count_of_agencies)
+```
+
+```{r}
+agencies_per_state %>% 
+  ggplot(aes(x = fct_reorder(state, pop_per_agency), y = pop_per_agency)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + # get rid of scientific notation??
+  labs(x = "State", y = "Number of People per Agency", title = "ADD TITLE")
+```
+
+## Resources
+
+1. https://walker-data.com/tidycensus/reference/get_estimates.html
+2. A google search that told me `NPOPCHG` meant "total population change between estimates"
