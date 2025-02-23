@@ -30,8 +30,9 @@ agencies_per_state <- agencies %>%
 agencies_per_state %>% 
   ggplot(aes(x = fct_reorder(state, pop_per_agency), y = pop_per_agency)) +
   geom_col() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + # get rid of scientific notation??
-  labs(x = "State", y = "Number of People per Agency", title = "ADD TITLE")
+  scale_y_continuous(breaks = c(0, 100000, 200000, 300000), labels = c("0", "100,000", "200,000", "300,000")) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "State", y = "Number of People per Agency", title = "Number of People per Agency by State")
 ```
 
 ## Resources
