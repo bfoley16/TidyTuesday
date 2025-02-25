@@ -27,13 +27,23 @@ agencies_per_state <- agencies %>%
 ```
 
 ```{r}
-agencies_per_state %>% 
+agencies_pop_state <- agencies_per_state %>% 
   ggplot(aes(x = fct_reorder(state, pop_per_agency), y = pop_per_agency)) +
   geom_col() +
   scale_y_continuous(breaks = c(0, 100000, 200000, 300000), labels = c("0", "100,000", "200,000", "300,000")) + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "State", y = "Number of People per Agency", title = "Number of People per Agency by State", subtitle = "Population of a state divided by the number of agencies in it")
+  labs(x = "State", y = "People per Agency", title = "People per Agency by State", subtitle = "Population of a state divided by the number of agencies in it")
+
+agencies_pop_state
 ```
+
+```{r}
+ggsave(agencies_pop_state,
+       filename = "2015-02-18_TidyTuesday.png", 
+       device = "png",
+       height = 4, width = 8, units = "in")
+```
+
 
 ## Resources
 
