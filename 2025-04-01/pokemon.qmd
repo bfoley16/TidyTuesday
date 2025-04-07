@@ -1,0 +1,43 @@
+---
+title: "Tidy Tuesday (2025-04-01)"
+format: html
+editor: visual
+---
+
+```{r}
+pokemon_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-04-01/pokemon_df.csv')
+```
+
+```{r}
+pokemon_df %>% 
+  ggplot(aes(x = attack, y = type_1)) +
+  geom_boxplot()
+```
+
+```{r}
+pokemon_df %>% 
+  mutate(speed = cut(speed, breaks = 3, labels = c("Slow", "Medium", "Fast"))) %>%
+  ggplot(aes(x = attack, y = special_attack, color = speed)) +
+  geom_point() +
+  labs(x = "Attack Power", y = "Special Attack Power", color = "Speed Category", title = "Pokemon Attack Power and Speed")
+```
+
+```{r}
+pokemon_df %>% 
+  ggplot(aes(x = speed, y = attack)) +
+  geom_point()
+```
+
+```{r}
+pokemon_df %>% 
+  mutate(speed = cut(speed, breaks = 3, labels = c("Slow", "Medium", "Fast"))) %>%
+  ggplot(aes(x = attack, y = speed)) +
+  geom_boxplot()
+```
+
+```{r}
+pokemon_df %>% 
+  ggplot(aes(x = type_1, fill = type_2)) +
+  geom_bar()
+```
+

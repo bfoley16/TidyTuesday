@@ -44,8 +44,7 @@ ggsave(agencies_pop_state,
        height = 4, width = 8, units = "in")
 ```
 
-
 ## Resources
 
-1. https://walker-data.com/tidycensus/reference/get_estimates.html
-2. A google search that told me `NPOPCHG` meant "total population change between estimates"
+1.  https://walker-data.com/tidycensus/reference/get_estimates.html
+2.  A google search that told me `NPOPCHG` meant "total population change between estimates"
