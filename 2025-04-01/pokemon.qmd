@@ -15,11 +15,18 @@ pokemon_df %>%
 ```
 
 ```{r}
-pokemon_df %>% 
+attack_speed <- pokemon_df %>% 
   mutate(speed = cut(speed, breaks = 3, labels = c("Slow", "Medium", "Fast"))) %>%
   ggplot(aes(x = attack, y = special_attack, color = speed)) +
   geom_point() +
   labs(x = "Attack Power", y = "Special Attack Power", color = "Speed Category", title = "Pokemon Attack Power and Speed")
+```
+
+```{r}
+ggsave(attack_speed,
+       filename = "2025-04-01_TidyTuesday.png", 
+       device = "png",
+       height = 4, width = 8, units = "in")
 ```
 
 ```{r}
